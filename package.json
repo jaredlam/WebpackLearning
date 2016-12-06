@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "json-loader": "^0.5.4",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
