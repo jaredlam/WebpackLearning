@@ -2,13 +2,14 @@
  * Created by Jared on 16/12/6.
  */
 var webpack = require('webpack');
-var htmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     devtool: "eval-source-map",
     entry: __dirname + "/app/main.js",
     output: {
         path: __dirname + "/build",
-        filename: "bundle.js"
+        filename: "[name]-[hash].js"
     },
     module: {
         loaders: [
@@ -32,10 +33,13 @@ module.exports = {
     ],
     plugins: [
         new webpack.BannerPlugin("This is a copyright"),
-        new htmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: __dirname + "/app/index.tmpl.html"
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new ExtractTextPlugin("[name]-[hash].css")
     ],
     devServer: {
         contentBase: "./public",//本地服务器所加载的页面所在的目录
