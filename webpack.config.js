@@ -2,6 +2,7 @@
  * Created by Jared on 16/12/6.
  */
 var webpack = require('webpack');
+var htmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     devtool: "eval-source-map",
     entry: __dirname + "/app/main.js",
@@ -30,7 +31,10 @@ module.exports = {
         require('autoprefixer')
     ],
     plugins: [
-        new webpack.BannerPlugin("This is a copyright")
+        new webpack.BannerPlugin("This is a copyright"),
+        new htmlWebpackPlugin({
+            template: __dirname + "/app/index.tmpl.html"
+        })
     ],
     devServer: {
         contentBase: "./public",//本地服务器所加载的页面所在的目录
