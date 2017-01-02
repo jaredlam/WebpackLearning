@@ -1,6 +1,7 @@
 /**
  * Created by Jared on 16/12/6.
  */
+var webpack = require('webpack');
 module.exports = {
     devtool: "eval-source-map",
     entry: __dirname + "/app/main.js",
@@ -25,6 +26,12 @@ module.exports = {
             }
         ]
     },
+    postcss: [
+        require('autoprefixer')
+    ],
+    plugins: [
+        new webpack.BannerPlugin("This is a copyright")
+    ],
     devServer: {
         contentBase: "./public",//本地服务器所加载的页面所在的目录
         colors: true,//终端中输出结果为彩色
