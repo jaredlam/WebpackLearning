@@ -34,7 +34,8 @@ module.exports = {
         new webpack.BannerPlugin("This is a copyright"),
         new htmlWebpackPlugin({
             template: __dirname + "/app/index.tmpl.html"
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         contentBase: "./public",//本地服务器所加载的页面所在的目录
